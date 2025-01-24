@@ -9,8 +9,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-app.use(express.json());
-// app.use('/api/', AuthRouter);
+app.use(express.json());;
 
 /* ====== Slash Request ====== */
 app.get("/", SlashReq);
