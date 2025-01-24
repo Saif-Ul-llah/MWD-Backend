@@ -1,0 +1,49 @@
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+  schemas  = ["auth", "public"]
+}
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+
+}
+model Organization {
+    id             Int     @id @default(autoincrement())
+    orgName        String  @unique
+    phone          String?
+    ownerFirstName String
+    ownerLastName  String
+    email          String  @unique
+    address        String?
+    description    String?
+    password       String?
+
+    @@schema("public")
+}
+
+model User {
+    id        Int     @id @default(autoincrement())
+    firstName String
+    lastName  String
+    phone     String?
+    email     String  @unique
+    password  String
+    regionId  Int
+    location  String?
+    Role      Role    @default(USER)
+
+    @@schema("auth")
+}
+
+enum Role {
+    USER
+    ADMIN
+    TEAMLEAD
+    WORKER
+    SUPPLIER
+    CLIENT
+    REGIONALADMIN
+
+     @@schema("auth")
+}

@@ -1,0 +1,25 @@
+model User {
+    id        Int     @id @default(autoincrement())
+    firstName String
+    lastName  String
+    phone     String?
+    email     String  @unique
+    password  String
+    regionId  Int
+    location  String?
+    Role      Role    @default(USER)
+
+    @@schema("auth")
+}
+
+enum Role {
+    USER
+    ADMIN
+    TEAMLEAD
+    WORKER
+    SUPPLIER
+    CLIENT
+    REGIONALADMIN
+
+     @@schema("auth")
+}
